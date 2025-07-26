@@ -62,12 +62,46 @@ A modern, interactive web application for analyzing agricultural commodity price
    npm install
    ```
 
-3. **Start the development server**:
+3. **Set up environment variables**:
+   ```bash
+   # Copy the example environment file
+   cp .env.example .env
+   
+   # Edit .env file and add your API keys
+   # VITE_ALPHA_VANTAGE_API_KEY=your_actual_api_key_here
+   ```
+
+4. **Start the development server**:
    ```bash
    npm run dev
    ```
 
-4. **Open your browser** and navigate to `http://localhost:5173`
+5. **Open your browser** and navigate to `http://localhost:5173`
+
+## 🔑 Environment Variables
+
+The application uses environment variables for API configuration. Create a `.env` file in the root directory:
+
+```env
+# Required: Alpha Vantage API Key for real commodity data
+VITE_ALPHA_VANTAGE_API_KEY=your_alpha_vantage_api_key_here
+
+# Optional: Additional API keys (for future enhancements)
+# VITE_WORLD_BANK_API_KEY=your_world_bank_key_here
+# VITE_QUANDL_API_KEY=your_quandl_key_here
+```
+
+### Getting API Keys
+
+1. **Alpha Vantage** (Free): 
+   - Visit [Alpha Vantage](https://www.alphavantage.co/support/#api-key)
+   - Sign up for a free account
+   - Get your API key (5 calls/minute, 500/day free tier)
+
+2. **World Bank** (Free): 
+   - No API key required for public data
+
+**Note**: If no API key is provided, the application will use realistic mock data for demonstration purposes.
 
 ## 🏗️ Build for Production
 
@@ -110,22 +144,30 @@ src/
 
 ## 🔧 Configuration
 
-### API Integration
+The application is configured through environment variables for security and flexibility.
 
-To use real APIs, you can configure the following:
+### API Data Sources
 
-1. **World Bank API**: No API key required (public data)
-2. **USDA NASS API**: Sign up at [USDA QuickStats](https://quickstats.nass.usda.gov/api) for an API key
+1. **Alpha Vantage API**: 
+   - Provides ETF-based commodity price data
+   - Requires free API key (VITE_ALPHA_VANTAGE_API_KEY)
+   - Rate limits: 5 calls/minute, 500/day (free tier)
 
-### Environment Variables
+2. **World Bank API**: 
+   - Global commodity price indicators
+   - No API key required (public data)
+   - Backup data source
 
-Create a `.env` file in the root directory:
+3. **Mock Data System**: 
+   - Realistic synthetic data for development
+   - Automatic fallback when APIs are unavailable
+   - Based on historical price patterns
 
-```env
-VITE_WORLD_BANK_API_URL=https://api.worldbank.org/v2
-VITE_USDA_API_URL=https://quickstats.nass.usda.gov/api
-VITE_USDA_API_KEY=your_usda_api_key_here
-```
+### Development vs Production
+
+- **Development**: Uses `.env` file for configuration
+- **Production**: Set environment variables in your deployment platform
+- **Fallback**: Always includes mock data for reliability
 
 ## 📈 Features in Detail
 
