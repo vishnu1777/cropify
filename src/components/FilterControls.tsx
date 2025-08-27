@@ -111,7 +111,8 @@ const FilterControls: React.FC<FilterControlsProps> = ({
                 </div>
 
                 {/* Single Year Selection */}
-                <div className="filter-group">
+
+                {/* <div className="filter-group">
                     <label htmlFor="year-select">
                         <Calendar size={16} />
                         Focus Year
@@ -129,7 +130,8 @@ const FilterControls: React.FC<FilterControlsProps> = ({
                             </option>
                         ))}
                     </select>
-                </div>
+                </div> */}
+
 
                 {/* Year Range - Start */}
                 <div className="filter-group">
